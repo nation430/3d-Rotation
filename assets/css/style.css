@@ -26,14 +26,25 @@ section{
     width:300px;
     height:300px;
     transform:translate(-50%, -50%);
-    background: url(/assets/img/globe.jpg);
+    background: url(/assets/img/globe.webp);
     background-size: cover;
     background-repeat: repeat-x;
     border-radius: 50%;
     box-shadow: inset 0 0 20px rgba(0, 0, 0, 1),
-    0 0 50px #4069ff;
+    0 0 50px #0e1738;
     animation: animateEarth 15s linear infinite;
 
+}
+
+.circle span::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:#050e29;
+    transform:translateZ(-5px);
 }
 
 @keyframes animateEarth {
@@ -46,5 +57,35 @@ section{
     }
 }
 
+.circle{
+    transform-style: preserve-3d;
+    animation: rotateText 10s linear infinite;
+}
+
+.circle span{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background:#050e29;
+    color: #fff;
+    font-size: 3em;
+    transform-origin: center;
+    transform-style: preserve-3d;
+    padding:5px 11px;
+    transform: rotateY(calc(var(--i) * calc(360deg / 31)))
+     translateZ(200px);
+     border-top:4px solid #200d41;
+     border-bottom:4px solid #200d41;
+}
 
 
+@keyframes rotateText {
+    0%{
+        transform: perspective(1000px) rotateY(360deg) rotateX(15deg)
+         translateY(-30px);
+    }
+    100%{
+        transform: perspective(1000px) rotateY(0deg) rotateX(15deg)
+         translateY(-30px);
+    }
+}
